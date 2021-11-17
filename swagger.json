@@ -1,0 +1,262 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Welcome to Math Fun API, An API designed specifically to help you have fun while testing your math skills. Its pretty much simple to use. All you need is to always put together the bookmark token generated when answering a question. You can always contact me on how to improve the project or if you want to contribute create a pull request at [https://github.com/usmanonline]",
+    "version": "1.0.0",
+    "title": "Math Fun API",
+    "contact": {
+      "email": "usmanabubakar0014@gmail.com"
+    }
+  },
+  "basePath": "/api",
+  "tags": [{
+    "name": "Number Guessing",
+    "description": "This module provides you with a number guess api, It determines how smart you are with guessing numbers"
+  }, {
+    "name": "Arithmetics",
+    "description": "This module provides you with a simple arithmetic api. It determines how smart you are with arithmetic operations"
+  }, {
+    "name": "Base Conversion",
+    "description": "This module provides you with a simple base conversion api. It determines how smart you are with conversion from other base to base 10"
+  }],
+  "schemes": ["http","https"],
+  "paths": {
+    "/number-guess-health": {
+      "get": {
+        "tags": ["Number Guessing"],
+        "summary": "Checks the health of the Number Guess Service",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+    "/play-number-guess": {
+      "get": {
+        "tags": ["Number Guessing"],
+        "summary": "Generates a number guess question",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+    "/guess": {
+      "post": {
+        "tags": ["Number Guessing"],
+        "summary": "Accepts user guess and validates the answer",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "Answer",
+          "description": "Guess",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Query"
+          }
+        }],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+
+    "/arithmetic-health": {
+      "get": {
+        "tags": ["Arithmetics"],
+        "summary": "Checks the health of the Arithmetic Service",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+    "/play-arithmetics": {
+      "get": {
+        "tags": ["Arithmetics"],
+        "summary": "Generates a simple arithmetic question",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+    "/answer": {
+      "post": {
+        "tags": ["Arithmetics"],
+        "summary": "Accepts user answer and validates the answer",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "Answer",
+          "description": "Answer",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Query"
+          }
+        }],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+
+    "/base-conversion-health": {
+      "get": {
+        "tags": ["Base Conversion"],
+        "summary": "Checks the health of the Base Conversion Service",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+    "/play-conversion": {
+      "get": {
+        "tags": ["Base Conversion"],
+        "summary": "Generates a base conversion question",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    },
+    "/base-answer": {
+      "post": {
+        "tags": ["Base Conversion"],
+        "summary": "Accepts user answer and validates the answer",
+        "produces": ["application/json"],
+        "parameters": [{
+          "in": "body",
+          "name": "Answer",
+          "description": "Conversion Response",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Query"
+          }
+        }],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Health"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Health": {
+      "type": "object",
+      "properties": {
+        "ok": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Question": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "bookmark": {
+          "type": "string"
+        }
+      }
+    },
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "answered": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Query": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "integer"
+        },
+        "bookmark": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
