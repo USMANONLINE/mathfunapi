@@ -1,6 +1,5 @@
 # Math Fun API (mathfunapi)
-
-A machine learning coure site
+A simple api that expose 3 logic games. Random Arithmetics, Base Conversion and Number Guess. You can access the api at https://mathfunapi.herokuapp.com
 
 ## Install the dependencies
 ```bash
