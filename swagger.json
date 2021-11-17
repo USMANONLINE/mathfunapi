@@ -19,7 +19,7 @@
     "name": "Base Conversion",
     "description": "This module provides you with a simple base conversion api. It determines how smart you are with conversion from other base to base 10"
   }],
-  "schemes": ["http","https"],
+  "schemes": ["https","http"],
   "paths": {
     "/number-guess-health": {
       "get": {
